@@ -14,6 +14,11 @@ public class FizzBuzzResource {
     @Autowired
     private FizzBuzzService fizzBuzzService;
 
+    @GetMapping("/")
+    public void rootMapping() {
+        throw new FizzBuzzException("Please supply input");
+    }
+
     @GetMapping("/{number}")
     public FizzBuzzVM play(@PathVariable Integer number) {
         validate(number);

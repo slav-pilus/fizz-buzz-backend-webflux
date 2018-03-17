@@ -51,4 +51,9 @@ public class FizzBuzzResourceTest {
     public void shouldThrowExceptionWhenServiceCallNull() {
         target.play(3);
     }
+
+    @Test(expected = FizzBuzzException.class)
+    public void shouldErrorOnRoot() {
+        target.rootMapping();
+    }
 }
