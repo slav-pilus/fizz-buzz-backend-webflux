@@ -1,0 +1,27 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# ===================================================================
+
+logging:
+    level:
+        ROOT: INFO
+        com.kairos: DEBUG
+
+spring:
+    profiles:
+        active: dev
+    devtools:
+        restart:
+            enabled: true
+    resources:
+      add-mappings: false
+    mvc:
+      throw-exception-if-no-handler-found: true
+server:
+    port: 8080
+    error:
+      whitelabel:
+        enabled: true
