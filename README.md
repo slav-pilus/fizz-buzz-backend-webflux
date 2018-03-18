@@ -1,5 +1,14 @@
 # FizzBuzz Rest server
 This application is a backend rest server to get result of FizzBuzz game
+# local build
+
+This project can be build locally with maven wrapper:
+
+    ./mvnw install
+    
+To run it on local environment the dev spring profile needs to be provided:
+
+    java -jar -Dspring.profiles.active=dev fizzbuzz-backend-0.0.1-SNAPSHOT.jar
 
 # Endpoints
 
