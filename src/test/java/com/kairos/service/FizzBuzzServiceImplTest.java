@@ -2,6 +2,8 @@ package com.kairos.service;
 
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
 
@@ -11,71 +13,71 @@ public class FizzBuzzServiceImplTest {
 
     @Test
     public void shouldReturnSameNumber() {
-        String result = target.getResult(7);
+        Optional<String> result = target.getResult(7);
 
-        assertThat(result).isEqualTo("7");
+        assertThat(result.get()).isEqualTo("7");
     }
 
     @Test
     public void shouldReturnFizzWhenThree() {
-        String result = target.getResult(3);
+        Optional<String> result = target.getResult(3);
 
-        assertThat(result).isEqualTo("Fizz");
+        assertThat(result.get()).isEqualTo("Fizz");
     }
 
     @Test
     public void shouldReturnBuzzWhenFive() {
-        String result = target.getResult(5);
+        Optional<String> result = target.getResult(5);
 
-        assertThat(result).isEqualTo("Buzz");
+        assertThat(result.get()).isEqualTo("Buzz");
     }
 
     @Test
     public void shouldReturnFizzBuzzWhenFifteen() {
-        String result = target.getResult(15);
+        Optional<String> result = target.getResult(15);
 
-        assertThat(result).isEqualTo("FizzBuzz");
+        assertThat(result.get()).isEqualTo("FizzBuzz");
     }
 
     @Test
     public void shouldReturnFizzWhenDivisibleByThree() {
-        String result = target.getResult(3 * 3);
+        Optional<String> result = target.getResult(3 * 3);
 
-        assertThat(result).isEqualTo("Fizz");
+        assertThat(result.get()).isEqualTo("Fizz");
     }
 
     @Test
     public void shouldReturnBuzzWhenDivisibleByFive() {
-        String result = target.getResult(5 * 2);
+        Optional<String> result = target.getResult(5 * 2);
 
-        assertThat(result).isEqualTo("Buzz");
+        assertThat(result.get()).isEqualTo("Buzz");
     }
 
     @Test
     public void shouldReturnFizzBuzzWhenDivisibleByThreeAndFive() {
-        String result = target.getResult((5 * 2) * (3 * 3));
+        Optional<String> result = target.getResult((5 * 2) * (3 * 3));
 
-        assertThat(result).isEqualTo("FizzBuzz");
+        assertThat(result.get()).isEqualTo("FizzBuzz");
     }
 
     @Test
     public void shouldHandleNull() {
-        String result = target.getResult(null);
+        Optional<String> result = target.getResult(null);
 
-        assertThat(result).isNull();
+        assertThat(result.orElse("no value")).isEqualTo("no value");
     }
 
     @Test
     public void shouldHandleZero() {
-        String result = target.getResult(0);
+        Optional<String> result = target.getResult(0);
 
-        assertThat(result).isEqualTo("FizzBuzz");
+        assertThat(result.get()).isEqualTo("FizzBuzz");
     }
 
     @Test
     public void shouldHandleNegativeNumbers() {
-        String result = target.getResult(-15);
+        Optional<String> result = target.getResult(-15);
 
-        assertThat(result).isEqualTo("FizzBuzz");
+        assertThat(result.get()).isEqualTo("FizzBuzz");
     }
 }

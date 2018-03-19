@@ -8,6 +8,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -23,7 +26,7 @@ public class FizzBuzzResourceTest {
 
     @Test
     public void fizzBuzzShouldGetGameResultFromService() {
-        when(fizzBuzzService.getResult(5)).thenReturn("Buzz");
+        when(fizzBuzzService.getResult(5)).thenReturn(Optional.of("Buzz"));
 
         target.play(5);
 
@@ -39,12 +42,15 @@ public class FizzBuzzResourceTest {
 
     @Test
     public void shouldReturnViewModel() {
-        when(fizzBuzzService.getResult(3)).thenReturn("Fizz");
+        when(fizzBuzzService.getResult(3)).thenReturn(Optional.of("Fizz"));
 
-        FizzBuzzVM play = target.play(3);
+        Mono<FizzBuzzVM> play = target.play(3);
 
-        assertThat(play.getResult()).isEqualTo("Fizz");
-        assertThat(play.getInput()).isEqualTo(3);
+        play.subscribe(value -> {
+            System.out.println("in");
+            assertThat(value.getResult()).isEqualTo("Fizz");
+            assertThat(value.getInput()).isEqualTo(3);
+        });
     }
 
     @Test(expected = FizzBuzzException.class)

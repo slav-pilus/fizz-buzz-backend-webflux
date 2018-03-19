@@ -1,5 +1,5 @@
 # FizzBuzz Rest server
-This application is a backend rest server to get result of FizzBuzz game
+This application is a backend rest server to get result of FizzBuzz game implemented with WebFlux
 # local build
 
 This project can be build locally with maven wrapper:
@@ -43,7 +43,6 @@ Demo application can be found [here]
    2) MVC error handling is configured in `RestResponseEntityExceptionHandler` class to provide JSON error responses to the client.
    3) Two Spring configuration files are provided (`dev` and `default`).
    4) `FizzBuzzResource` uses `FizzBuzzService` interface to obtain response and is it's only implementation at the moment is 'FizzBuzzServiceImpl'. By using the interface an alternative implementation can be added without any changes to the web layer.
-   
+   5) Rest resource implemented with non-blocking pattern using WebFlux
 
-
-[here]: https://fizz-buzz-backend.herokuapp.com/1
+[here]: https://fizz-buzz-backend-webflux.herokuapp.com/1

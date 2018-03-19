@@ -2,13 +2,15 @@ package com.kairos.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class FizzBuzzServiceImpl implements FizzBuzzService {
 
     @Override
-    public String getResult(Integer input) {
+    public Optional<String> getResult(Integer input) {
         if (input == null) {
-            return null;
+            return Optional.empty();
         }
 
         String result = "";
@@ -20,6 +22,6 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
             result += "Buzz";
         }
 
-        return result.isEmpty() ? String.valueOf(input) : result;
+        return result.isEmpty() ? Optional.of(String.valueOf(input)) : Optional.of(result);
     }
 }

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "${settings.cors-origin}")
@@ -22,15 +25,12 @@ public class FizzBuzzResource {
     }
 
     @GetMapping("/{number}")
-    public FizzBuzzVM play(@PathVariable Integer number) {
+    public Mono<FizzBuzzVM> play(@PathVariable Integer number) {
         validate(number);
 
-        String gameResult = fizzBuzzService.getResult(number);
+        Optional<String> gameResult = fizzBuzzService.getResult(number);
 
-        if (gameResult == null) {
-            throw new FizzBuzzException("Cannot calculate result");
-        }
-        return new FizzBuzzVM(number, gameResult);
+        return Mono.just(new FizzBuzzVM(number, gameResult.orElseThrow(() -> new FizzBuzzException("Cannot calculate result"))));
     }
 
     private void validate(Integer number) {

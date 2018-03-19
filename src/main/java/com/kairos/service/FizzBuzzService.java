@@ -1,6 +1,8 @@
 package com.kairos.service;
 
+import java.util.Optional;
+
 public interface FizzBuzzService {
 
-    String getResult(Integer input);
+    Optional<String> getResult(Integer input);
 }
