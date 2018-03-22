@@ -1,5 +1,8 @@
 # FizzBuzz Rest server
 This application is a backend rest server to get result of FizzBuzz game implemented with WebFlux
+
+<img src="https://circleci.com/gh/slavP/fizz-buzz-backend-webflux/tree/master.svg?style=shield&circle-token=595734f81675e67e5a226043379088ef0996e99d">
+
 # local build
 
 This project can be build locally with maven wrapper:
